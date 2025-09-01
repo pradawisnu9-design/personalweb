@@ -1,0 +1,21 @@
+{
+  "name": "prada-portfolio-vue",
+  "version": "1.0.0",
+  "description": "Portfolio website with Vue.js and Aurora effects",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "vite preview --port 8000"
+  },
+  "dependencies": {
+    "vue": "^3.4.0",
+    "ogl": "^1.0.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.0",
+    "vite": "^5.0.0"
+  },
+  "type": "module"
+}

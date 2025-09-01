@@ -101,7 +101,7 @@
           <div class="about-content">
             <div class="about-image">
               <div class="profile-image">
-                <img src="./assets/pp.jpeg" alt="Prada Wishnu" />
+                <img src="/src/assets/pp.jpeg" alt="Prada Wishnu" />
               </div>
             </div>
             
@@ -136,10 +136,10 @@
               </div>
               
               <div class="about-actions">
-                <button class="download-cv-btn">
+                <a href="https://drive.google.com/file/d/14IfRmswUH_GAHzd8VqLpybK0dB4ZKZ2s/view?usp=drivesdk" class="download-cv-btn" target="_blank">
                   <i class="fas fa-download"></i>
                   Download CV
-                </button>
+                </a>
                 <div class="social-links-about">
                   <a href="https://fb.com/prada.wisnu.7" target="_blank" class="social-link-about facebook">
                     <i class="fab fa-facebook-f"></i>
@@ -241,8 +241,8 @@
                    </div>
                  </div>
                  <div class="author-info">
-                   <h4 class="author-name">Julia Sakura</h4>
-                   <p class="author-role">Envato Customer</p>
+                   <h4 class="author-name">Muhlas</h4>
+                   <p class="author-role">CEO Cendeqia</p>
                  </div>
                </div>
             </div>
@@ -263,7 +263,7 @@
                    </div>
                  </div>
                  <div class="author-info">
-                   <h4 class="author-name">John Santana</h4>
+                   <h4 class="author-name">M. Fadhil</h4>
                    <p class="author-role">Entrepreneur</p>
                  </div>
                </div>
@@ -286,11 +286,11 @@
               <h3 class="pricing-title">Standard</h3>
               <div class="pricing-price">$19<span>/month</span></div>
               <ul class="pricing-features">
-                <li>Mobile App Design</li>
+                <li>Website Development</li>
                 <li>Responsive Design</li>
-                <li>Database Development</li>
-                <li>Web Design</li>
-                <li>24/7 Support</li>
+                <li>UI/UX Implementation</li>
+                <li>Website Maintenance</li>
+                <li>Website Optimization</li>
               </ul>
               <button class="pricing-btn">Get Standard</button>
             </div>
@@ -303,11 +303,11 @@
               <h3 class="pricing-title">Professional</h3>
               <div class="pricing-price">$29<span>/month</span></div>
               <ul class="pricing-features">
-                <li>Mobile App Design</li>
-                <li>Responsive Design</li>
-                <li>Database Development</li>
-                <li>Web Design</li>
-                <li>24/7 Support</li>
+                <li>E-commerce Development</li>
+                <li>Custom Web Application</li>
+                <li>API Integration</li>
+                <li>Database Management</li>
+                <li>CMS Development</li>
               </ul>
               <button class="pricing-btn">Get Pro</button>
             </div>
@@ -319,11 +319,11 @@
               <h3 class="pricing-title">Business</h3>
               <div class="pricing-price">$39<span>/month</span></div>
               <ul class="pricing-features">
-                <li>Mobile App Design</li>
-                <li>Responsive Design</li>
-                <li>Database Development</li>
-                <li>Web Design</li>
-                <li>24/7 Support</li>
+                <li>Digital Branding & Identity</li>
+                <li>SEO & Digital Marketing</li>
+                <li>Business Consultation for Web Solutions</li>
+                <li>Analytics & Reporting</li>
+                <li>Training & Support</li>
               </ul>
               <button class="pricing-btn">Get Business</button>
             </div>
@@ -646,18 +646,20 @@
           <!-- Left Column - Message Form -->
           <div class="contact-left">
             <h3 class="contact-section-title">Message Me</h3>
-            <form class="contact-form">
-              <div class="form-group">
-                <input type="text" id="name" name="name" placeholder="Name" class="form-input" required>
+            <form class="contact-form" @submit.prevent="sendToWhatsApp">
+              <div class="grid-container">
+                <div class="form-group">
+                  <input type="text" id="name" name="name" v-model="contactForm.name" placeholder="Name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                  <input type="email" id="email" name="email" v-model="contactForm.email" placeholder="Email" class="form-input" required>
+                </div>
               </div>
               <div class="form-group">
-                <input type="email" id="email" name="email" placeholder="Email" class="form-input" required>
+                <input type="text" id="subject" name="subject" v-model="contactForm.subject" placeholder="Subject" class="form-input" required>
               </div>
               <div class="form-group">
-                <input type="text" id="subject" name="subject" placeholder="Subject" class="form-input" required>
-              </div>
-              <div class="form-group">
-                <textarea id="message" name="message" placeholder="Message" class="form-textarea" rows="6" required></textarea>
+                <textarea id="message" name="message" v-model="contactForm.message" placeholder="Message" class="form-textarea" rows="6" required></textarea>
               </div>
               <button type="submit" class="send-btn">
                 <i class="fas fa-paper-plane"></i>
@@ -741,6 +743,14 @@ const portfolioModalOpen = ref(false)
 const contactModalOpen = ref(false)
 const auroraIntensity = ref(1.0)
 const activeFilter = ref('all')
+
+// Contact form data
+const contactForm = ref({
+  name: '',
+  email: '',
+  subject: '',
+  message: ''
+})
 
 // Social links data
 const socialLinks = ref([
@@ -866,69 +876,103 @@ const closeContactModal = () => {
   document.body.style.overflow = 'auto'
 }
 
+// Send form to WhatsApp
+const sendToWhatsApp = () => {
+  const { name, email, subject, message } = contactForm.value
+  
+  // Validate form
+  if (!name || !email || !subject || !message) {
+    alert('Please fill in all fields')
+    return
+  }
+  
+  // Create WhatsApp message
+  const whatsappMessage = `*${subject}*\n\nHi, my name is ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+  
+  // Encode message for URL
+  const encodedMessage = encodeURIComponent(whatsappMessage)
+  
+  // WhatsApp URL with phone number
+  const whatsappURL = `https://wa.me/6285156815003?text=${encodedMessage}`
+  
+  // Open WhatsApp
+  window.open(whatsappURL, '_blank')
+  
+  // Reset form
+  contactForm.value = {
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  }
+  
+  // Close modal
+  closeContactModal()
+}
+
 // Portfolio data
 const portfolioItems = ref([
   {
     id: 1,
-    title: 'Design Project 1',
-    category: 'design',
-    image: 'https://picsum.photos/400/300?random=1',
+    title: 'Design',
+    category: 'marketing design',
+    image: '/src/assets/POSTMARKETING4.png',
     link: 'https://www.instagram.com/p/DAdmEMISY4X/?utm_source=ig_web_copy_link&igsh=bDF3NzhobzRzOTh2'
   },
   {
     id: 2,
-    title: 'Design Project 2',
-    category: 'design',
-    image: 'https://picsum.photos/400/300?random=2',
+    title: 'Design',
+    category: 'marketing design',
+    image: '/src/assets/POSTMARKETING3.png',
     link: 'https://www.instagram.com/p/C_7vLULSsQo/?utm_source=ig_web_copy_link&igsh=MWw5c2xtNTNmbTNoZw=='
   },
   {
     id: 3,
-    title: 'Design Project 3',
-    category: 'design',
-    image: 'https://picsum.photos/400/300?random=3',
+    title: 'Design',
+    category: 'marketing design',
+    image: '/src/assets/POSTMARKETING2.png',
     link: 'https://www.instagram.com/p/C_sONEwymHI/?utm_source=ig_web_copy_link&igsh=Ynk3N2xsNjZlNHly'
   },
   {
     id: 4,
-    title: 'Design Project 4',
-    category: 'design',
-    image: 'https://picsum.photos/400/300?random=4',
+    title: 'Design',
+    category: 'marketing design',
+    image: '/src/assets/POSTMARKETING1.png',
     link: 'https://www.instagram.com/p/C_mrDG9yP6u/?utm_source=ig_web_copy_link&igsh=MXFsazFuc3g5MGx5ag=='
   },
   {
     id: 5,
-    title: 'Design Project 5',
+    title: 'Marketing Design 4',
     category: 'design',
-    image: 'https://picsum.photos/400/300?random=5',
+    image: '/src/assets/POSTMARKETING5.jpg',
     link: 'https://www.instagram.com/p/C_RbbEPSPib/?utm_source=ig_web_copy_link&igsh=NHRjYTBlaTFoZXls'
   },
   {
     id: 6,
     title: 'BUSMAT Website',
     category: 'website',
-    image: 'https://picsum.photos/400/300?random=6',
+    image: '/src/assets/busmat.png',
     link: 'https://compro-busmat-main-ax1oxi.laravel.cloud/'
   },
   {
     id: 7,
     title: 'Alpha Creative',
     category: 'website',
-    image: 'https://picsum.photos/400/300?random=7',
+    image: '/src/assets/alphapos.png',
     link: 'https://alpha-creativee.online/'
   },
   {
     id: 8,
     title: 'Outlook Barbershop',
     category: 'website',
-    image: 'https://picsum.photos/400/300?random=8',
+    image: '/src/assets/outlook.png',
     link: 'https://www.outlookbarbershop.com/'
   },
   {
     id: 9,
     title: 'Cendeqia',
     category: 'website',
-    image: 'https://picsum.photos/400/300?random=9',
+    image: '/src/assets/cendeqia.png',
     link: 'https://cendeqia.com/'
   }
 ])
@@ -2507,6 +2551,12 @@ body::after {
 
 .form-group {
   position: relative;
+}
+
+.grid-container { 
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
 }
 
 .form-input,

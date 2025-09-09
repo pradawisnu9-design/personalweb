@@ -2930,4 +2930,11 @@ body::after {
     font-size: 0.85rem;
   }
 }
+
+@media (max-width: 480px) {
+  .contact-line {
+    width: 5px;
+    margin: 0 0.5rem;
+  }
+}
 </style>

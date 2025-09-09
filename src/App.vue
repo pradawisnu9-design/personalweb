@@ -101,7 +101,7 @@
           <div class="about-content">
             <div class="about-image">
               <div class="profile-image">
-                <img src="/src/assets/pp.jpeg" alt="Prada Wishnu" />
+                <img :src="profileImage" alt="Prada Wishnu" />
               </div>
             </div>
             
@@ -731,6 +731,18 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import Aurora from './components/Aurora.vue'
 
+// Import all images
+import profileImage from './assets/pp.jpeg'
+import postMarketing1 from './assets/POSTMARKETING1.png'
+import postMarketing2 from './assets/POSTMARKETING2.png'
+import postMarketing3 from './assets/POSTMARKETING3.png'
+import postMarketing4 from './assets/POSTMARKETING4.png'
+import postMarketing5 from './assets/POSTMARKETING5.jpg'
+import busmatImage from './assets/busmat.png'
+import alphaposImage from './assets/alphapos.png'
+import outlookImage from './assets/outlook.png'
+import cendeqiaImage from './assets/cendeqia.png'
+
 // Reactive data
 const name = ref('Prada Wishnu S.')
 const professions = ['Graphic Designer', 'Web Developer', 'Data Science']
@@ -916,63 +928,63 @@ const portfolioItems = ref([
     id: 1,
     title: 'Design',
     category: 'marketing design',
-    image: '/src/assets/POSTMARKETING4.png',
+    image: postMarketing4,
     link: 'https://www.instagram.com/p/DAdmEMISY4X/?utm_source=ig_web_copy_link&igsh=bDF3NzhobzRzOTh2'
   },
   {
     id: 2,
     title: 'Design',
     category: 'marketing design',
-    image: '/src/assets/POSTMARKETING3.png',
+    image: postMarketing3,
     link: 'https://www.instagram.com/p/C_7vLULSsQo/?utm_source=ig_web_copy_link&igsh=MWw5c2xtNTNmbTNoZw=='
   },
   {
     id: 3,
     title: 'Design',
     category: 'marketing design',
-    image: '/src/assets/POSTMARKETING2.png',
+    image: postMarketing2,
     link: 'https://www.instagram.com/p/C_sONEwymHI/?utm_source=ig_web_copy_link&igsh=Ynk3N2xsNjZlNHly'
   },
   {
     id: 4,
     title: 'Design',
     category: 'marketing design',
-    image: '/src/assets/POSTMARKETING1.png',
+    image: postMarketing1,
     link: 'https://www.instagram.com/p/C_mrDG9yP6u/?utm_source=ig_web_copy_link&igsh=MXFsazFuc3g5MGx5ag=='
   },
   {
     id: 5,
     title: 'Marketing Design 4',
     category: 'design',
-    image: '/src/assets/POSTMARKETING5.jpg',
+    image: postMarketing5,
     link: 'https://www.instagram.com/p/C_RbbEPSPib/?utm_source=ig_web_copy_link&igsh=NHRjYTBlaTFoZXls'
   },
   {
     id: 6,
     title: 'BUSMAT Website',
     category: 'website',
-    image: '/src/assets/busmat.png',
+    image: busmatImage,
     link: 'https://compro-busmat-main-ax1oxi.laravel.cloud/'
   },
   {
     id: 7,
     title: 'Alpha Creative',
     category: 'website',
-    image: '/src/assets/alphapos.png',
+    image: alphaposImage,
     link: 'https://alpha-creativee.online/'
   },
   {
     id: 8,
     title: 'Outlook Barbershop',
     category: 'website',
-    image: '/src/assets/outlook.png',
+    image: outlookImage,
     link: 'https://www.outlookbarbershop.com/'
   },
   {
     id: 9,
     title: 'Cendeqia',
     category: 'website',
-    image: '/src/assets/cendeqia.png',
+    image: cendeqiaImage,
     link: 'https://cendeqia.com/'
   }
 ])

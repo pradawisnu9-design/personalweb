@@ -738,6 +738,10 @@ import postMarketing2 from './assets/POSTMARKETING2.png'
 import postMarketing3 from './assets/POSTMARKETING3.png'
 import postMarketing4 from './assets/POSTMARKETING4.png'
 import postMarketing5 from './assets/POSTMARKETING5.jpg'
+import ss from './assets/SS.png'
+import web from './assets/web.png'
+import logod from './assets/logod.png'
+import nc from './assets/nc.png'
 import busmatImage from './assets/busmat.png'
 import alphaposImage from './assets/alphapos.png'
 import outlookImage from './assets/outlook.png'
@@ -926,38 +930,38 @@ const sendToWhatsApp = () => {
 const portfolioItems = ref([
   {
     id: 1,
-    title: 'Design',
-    category: 'marketing design',
+    title: 'Marketing Design',
+    category: 'design',
     image: postMarketing4,
     link: 'https://www.instagram.com/p/DAdmEMISY4X/?utm_source=ig_web_copy_link&igsh=bDF3NzhobzRzOTh2'
   },
   {
     id: 2,
-    title: 'Design',
-    category: 'marketing design',
-    image: postMarketing3,
-    link: 'https://www.instagram.com/p/C_7vLULSsQo/?utm_source=ig_web_copy_link&igsh=MWw5c2xtNTNmbTNoZw=='
+    title: 'Social Media Design',
+    category: 'design',
+    image: ss,
+    link: 'https://www.instagram.com/reel/C_aY1oySyTE/?utm_source=ig_web_copy_link&igsh=MWRlbXF6cjAyb2VpMg=='
   },
   {
     id: 3,
-    title: 'Design',
-    category: 'marketing design',
-    image: postMarketing2,
-    link: 'https://www.instagram.com/p/C_sONEwymHI/?utm_source=ig_web_copy_link&igsh=Ynk3N2xsNjZlNHly'
+    title: 'Web Design',
+    category: 'design',
+    image: web,
+    link: 'https://www.behance.net/gallery/234277079/Web-Design'
   },
   {
     id: 4,
-    title: 'Design',
-    category: 'marketing design',
-    image: postMarketing1,
-    link: 'https://www.instagram.com/p/C_mrDG9yP6u/?utm_source=ig_web_copy_link&igsh=MXFsazFuc3g5MGx5ag=='
+    title: 'Logo Design',
+    category: 'design',
+    image: logod,
+    link: 'https://www.behance.net/gallery/234277887/Design-Logo'
   },
   {
     id: 5,
-    title: 'Marketing Design 4',
+    title: 'Company Namecard Design',
     category: 'design',
-    image: postMarketing5,
-    link: 'https://www.instagram.com/p/C_RbbEPSPib/?utm_source=ig_web_copy_link&igsh=NHRjYTBlaTFoZXls'
+    image: nc,
+    link: 'https://www.behance.net/gallery/234278247/Company-Card-Name'
   },
   {
     id: 6,
@@ -986,7 +990,7 @@ const portfolioItems = ref([
     category: 'website',
     image: cendeqiaImage,
     link: 'https://cendeqia.com/'
-  }
+  },
 ])
 
 // Computed property for filtered portfolio items
